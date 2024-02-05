@@ -135,5 +135,31 @@ Round(AVG(Rating),0)
 FROM zomato_dataset
 GROUP BY country,City,RestaurantName;
 
+/*new delhi connaugt place have 122 resturant*/
+
+select LocalityVerbose,City,
+count(RestaurantName),
+round(avg(Rating),0)
+from zomato_dataset
+group by LocalityVerbose,City;
+
+/* in new delhi at connaught place natural ice cream have highest rating of 4.9*/
+
+select localityverbose,city,RestaurantName,Rating
+from zomato_dataset
+where LocalityVerbose like '%connaught%'
+group by localityverbose,city,RestaurantName,Rating
+order by Rating desc;
+
+/* Pom Pom's Teahouse and Sandwicheria in usa are highest rated resturant where average cost for two is 25 dollars and have voting of 1457*/
+  
+SELECT *
+FROM zomato_dataset
+where country = 'USA'
+and Price_range <=3
+and votes > 1000
+and Average_Cost_for_two < 1000
+and rating > 4
+order by Rating desc;
 
 
